@@ -12,21 +12,21 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@v4
       - name: set up jdk
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
           cache: gradle
       - name: code vulnerability scanning
-        uses: anchore/scan-action@v3
+        uses: anchore/scan-action@v6
         id: scan
         with:
           path: "${{ github.workspace }}"
           fail-build: false
           severity-cutoff: high
-          acs-report-enable: true
+          output-format: sarif
       - name: upload vulnerability
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
