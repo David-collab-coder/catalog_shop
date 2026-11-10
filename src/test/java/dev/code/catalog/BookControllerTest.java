@@ -30,7 +30,7 @@ public class BookControllerTest {
                 .uri("/books")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(new Book("1234","T1","A1",23.4))
+                .body(Book.of("1234","T1","A1",23.4))
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody(Book.class);

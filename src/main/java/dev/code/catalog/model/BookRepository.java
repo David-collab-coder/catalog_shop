@@ -1,13 +1,10 @@
 package dev.code.catalog.model;
 
-public interface BookRepository {
-    Iterable<Book> findAll();
+import org.springframework.data.repository.CrudRepository;
+
+public interface BookRepository extends CrudRepository<Book,Long> {
 
     Book findByIsbn(String isbn);
 
-    Book save(Book book);
-
     void deleteByIsbn(String isbn);
-
-
 }

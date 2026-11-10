@@ -20,7 +20,7 @@ public class BookJsonTest {
 
     @Test
     void serializeTest() throws IOException {
-        Book book = new Book("1234","Cloud Native","Thomas Vitale",23.4);
+        Book book =Book.of("1234","Cloud Native","Thomas Vitale",23.4);
 
         JsonContent<Book> bookJsonContent = tester.write(book);
         assertThat(bookJsonContent).isNotNull();
@@ -44,7 +44,7 @@ public class BookJsonTest {
         assertThat(book.isbn()).isEqualTo("1234");
         assertThat(tester.parseObject(bookJson))
                 .usingRecursiveComparison()
-                .isEqualTo(new Book("1234","Cloud Native","Thomas Vitale",23.0));
+                .isEqualTo(Book.of("1234","Cloud Native","Thomas Vitale",23.0));
 
     }
 }

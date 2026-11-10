@@ -25,7 +25,7 @@ public class BookValidationTest {
 
     @Test
     void bookDetailsProvidedBetter(){
-        Book book = new Book("1234","Cloud Native","Thomas Vitale",23.4);
+        Book book = Book.of("1234","Cloud Native","Thomas Vitale",23.4);
 
         Set<ConstraintViolation<Book>> validate = validator.validate(book);
         assertThat(validate).isEmpty();
@@ -34,7 +34,7 @@ public class BookValidationTest {
 
     @Test
     void testWhenIsbnIsBlank(){
-        Book book = new Book("","Tr","A1",23.4);
+        Book book = Book.of("","Tr","A1",23.4);
         Set<ConstraintViolation<Book>> validate = validator.validate(book);
         assertThat(validate).hasSize(1);
         assertThat(validate.iterator().next().getMessage()).isEqualTo("ISBN must be provided");
@@ -42,7 +42,7 @@ public class BookValidationTest {
 
     @Test
     void multipleViolationsTest(){
-        Book book = new Book("1234","tr","ai",-10);
+        Book book = Book.of("1234","tr","ai",-10);
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
 
         assertThat(violations).hasSize(1);

@@ -1,6 +1,17 @@
 spring:
   application:
     name: catalog
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order_db
+    password: 1234
+    username: postgres
+
+
+  sql:
+    init:
+      mode: ALWAYS
+
+
 
 server:
   port: 9001
